@@ -1,0 +1,38 @@
+/* Globales */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Generelles */
+
+#pokemon-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(24, 24, 24);
+}
+
+/* Preview-Card */
+
+.pokemon-preview-card {
+    border: 2px solid black;
+    width: 350px;
+    height: 450px;
+    margin: 1rem;
+    background-color: rgb(83, 83, 83);
+    border-radius: 12px;
+}
+
+.pokemon-picture-container {
+    display: flex;
+    justify-content: center;
+}
+
+.pokemon-picture {
+    height: 9rem;
+    width: 9rem;
+    margin: 2rem;
+}
