@@ -37,16 +37,21 @@ function renderPokemonPreviewCard(i) {
     `;
 }
 
+
 function renderPokemonInfos(i) {
     document.getElementById(`pokemon-picture-${i}`).src = allPokemon[i]['sprites']['other']['dream_world']['front_default'];
     document.getElementById(`pokemon-name-${i}`).innerHTML = allPokemon[i]['name'];
     document.getElementById(`pokemon-type-${i}`).innerHTML = allPokemon[i]['types'][0]['type']['name'];
 
-    for (let j = 0; j < allPokemon[i]['types'].length; j++) {
-        document.getElementById(`pokemon-type-2-${i}`).innerHTML = allPokemon[i]['types'][j]['type']['name'];
+    if (allPokemon[i]['types'].length == 2) {
+        
+        for (let j = 0; j < allPokemon[i]['types'].length; j++) {
+            document.getElementById(`pokemon-type-2-${i}`).innerHTML = allPokemon[i]['types'][j]['type']['name'];
+        }
     }
-    
+
 }
+
 
 function renderBackgroundPreviewcard(i) {
     let PokemonType = allPokemon[i]['types'][0]['type']['name'];
