@@ -49,40 +49,35 @@ function renderPokemonInfos(i) {
 }
 
 function renderBackgroundPreviewcard(i) {
-    if (allPokemon[i]['types'][0]['type']['name'] == 'grass') {
-        document.getElementById(`pokemon-preview-card-${i}`).classList.add('bg-green');
-    }
+    let PokemonType = allPokemon[i]['types'][0]['type']['name'];
+    let pokemonPreviewCard = document.getElementById(`pokemon-preview-card-${i}`);
 
-    if (allPokemon[i]['types'][0]['type']['name'] == 'fire') {
-        document.getElementById(`pokemon-preview-card-${i}`).classList.add('bg-red');
+    if (PokemonType == 'grass') {
+        pokemonPreviewCard.classList.add('bg-green');
     }
-
-    if (allPokemon[i]['types'][0]['type']['name'] == 'water') {
-        document.getElementById(`pokemon-preview-card-${i}`).classList.add('bg-blue');
+    if (PokemonType == 'fire') {
+        pokemonPreviewCard.classList.add('bg-red');
     }
-
-    if (allPokemon[i]['types'][0]['type']['name'] == 'bug') {
-        document.getElementById(`pokemon-preview-card-${i}`).classList.add('bg-light-green');
+    if (PokemonType == 'water') {
+        pokemonPreviewCard.classList.add('bg-blue');
     }
-
-    if (allPokemon[i]['types'][0]['type']['name'] == 'normal') {
-        document.getElementById(`pokemon-preview-card-${i}`).classList.add('bg-light-cyan');
+    if (PokemonType == 'bug') {
+        pokemonPreviewCard.classList.add('bg-light-green');
     }
-
-    if (allPokemon[i]['types'][0]['type']['name'] == 'poison') {
-        document.getElementById(`pokemon-preview-card-${i}`).classList.add('bg-dark-green');
+    if (PokemonType == 'normal') {
+        pokemonPreviewCard.classList.add('bg-light-cyan');
     }
-
-    if (allPokemon[i]['types'][0]['type']['name'] == 'electric') {
-        document.getElementById(`pokemon-preview-card-${i}`).classList.add('bg-yellow');
+    if (PokemonType == 'poison') {
+        pokemonPreviewCard.classList.add('bg-dark-green');
     }
-
-    if (allPokemon[i]['types'][0]['type']['name'] == 'ground') {
-        document.getElementById(`pokemon-preview-card-${i}`).classList.add('bg-brown');
+    if (PokemonType == 'electric') {
+        pokemonPreviewCard.classList.add('bg-yellow');
     }
-
-    if (allPokemon[i]['types'][0]['type']['name'] == 'fairy') {
-        document.getElementById(`pokemon-preview-card-${i}`).classList.add('bg-fairy');
+    if (PokemonType == 'ground') {
+        pokemonPreviewCard.classList.add('bg-brown');
+    }
+    if (PokemonType == 'fairy') {
+        pokemonPreviewCard.classList.add('bg-fairy');
     }
     
 }
