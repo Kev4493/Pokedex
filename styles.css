@@ -42,39 +42,39 @@ body {
 /* Generelles */
 
 .bg-green {
-    background-color: green;
+    background: radial-gradient(circle, rgba(60,221,38,1) 20%, rgba(0,0,0,0.9) 90%);
 }
 
 .bg-red {
-    background-color: red;
+    background: radial-gradient(circle, rgba(218,6,6,1) 20%, rgba(0,0,0,0.9) 90%);
 }
 
 .bg-blue {
-    background-color: blue;
+    background: radial-gradient(circle, rgba(12,183,253,1) 20%, rgba(0,0,0,0.9) 90%);
 }
 
 .bg-light-green {
-    background-color: lightgreen;
+    background: radial-gradient(circle, rgba(65,147,74,1) 20%, rgba(0,0,0,1) 85%);
 }
 
 .bg-light-cyan {
-    background-color: lightcyan;
+    background: radial-gradient(circle, rgba(199,204,215,1) 20%, rgba(0,0,0,1) 85%);
 }
 
 .bg-dark-green {
-    background-color: #3B6B4F;
+    background: radial-gradient(circle, rgba(59,107,79,1) 20%, rgba(0,0,0,1) 85%);
 }
 
 .bg-yellow {
-    background-color: yellow;
+    background: radial-gradient(circle, rgba(255,244,0,1) 21%, rgba(0,0,0,1) 85%);
 }
 
 .bg-brown {
-    background-color: burlywood;
+    background: radial-gradient(circle, rgba(217,171,29,1) 21%, rgba(0,0,0,1) 85%);
 }
 
 .bg-fairy {
-    background-color: #A07C88;
+    background: radial-gradient(circle, rgba(160,124,136,1) 21%, rgba(0,0,0,1) 85%);
 }
 
 #pokemon-container {
@@ -89,21 +89,30 @@ body {
 
 .pokemon-preview-card {
     border: 2px solid black;
-    width: 350px;
-    height: 450px;
-    margin: 1rem;
+    width: 300px;
+    height: 400px;
+    margin: 2rem;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     border: none;
-    box-shadow: 0px 0px 6px 3px rgb(255 255 255 / 50%);
+    box-shadow: 7px 14px 8px #000000;
+    opacity: 0.9;
+}
+
+.pokemon-preview-card:hover {
+    opacity: 1;
+    cursor: pointer;
 }
 
 .pokemon-name-container {
     display: flex;
     justify-content: center;
+    color: whitesmoke;
+    text-shadow:0px 2px 9px #000000;
+    margin-top: 2rem;
 }
 
 .pokemon-name {
@@ -124,9 +133,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 3rem;
 }
 
 .pokemon-type{
-    font-size: 1.5rem;
-    padding: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    /* border: 2px solid black; */
+    border-radius: 12px;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+    background-color: rgba(24, 24, 24, 0.5);
+    color: whitesmoke;
 }

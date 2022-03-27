@@ -19,15 +19,16 @@ async function loadPokemon() {
     }
 }
 
+
 function renderPokemonPreviewCards(i) {
     document.getElementById('pokemon-container').innerHTML += /*html*/ `
 
         <div id="pokemon-preview-card-${i}" class="pokemon-preview-card">
-            <div class="pokemon-name-container">
-                <h1 id="pokemon-name-${i}" class="pokemon-name"></h1>
-            </div>
             <div class="pokemon-picture-container">
                 <img id="pokemon-picture-${i}" class="pokemon-picture">
+            </div>
+            <div class="pokemon-name-container">
+                <h1 id="pokemon-name-${i}" class="pokemon-name"></h1>
             </div>
             <div class="pokemon-type-container">
                 ${templateCreateTypeField(i)}
@@ -39,13 +40,11 @@ function renderPokemonPreviewCards(i) {
 
 function templateCreateTypeField(index) {
     let text = '';
-
     for (let i = 0; i < allPokemon[index]['types'].length; i++) {
         text += `<p id="pokemon-type-${index}" class="pokemon-type">
                     ${allPokemon[index]['types'][i]['type']['name']}
                 </p>`;
     }
-
     return text;
 }
 
