@@ -5,7 +5,7 @@ let allPokemon = [];
 async function loadPokemon() {
     document.getElementById('pokemon-container').innerHTML += '';
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 51; i++) {
         const pokemon_url = url + (i + 1);
         let response = await fetch(pokemon_url);
         current = await response.json();
@@ -13,13 +13,13 @@ async function loadPokemon() {
 
         console.log(allPokemon[i]);
 
-        renderPokemonPreviewCard(i);
-        renderPokemonInfos(i);
-        renderBackgroundPreviewcard(i);
+        renderPokemonPreviewCards(i);
+        showPokemonInfos(i);
+        renderBackgroundPreviewcards(i);
     }
 }
 
-function renderPokemonPreviewCard(i) {
+function renderPokemonPreviewCards(i) {
     document.getElementById('pokemon-container').innerHTML += /*html*/ `
 
         <div id="pokemon-preview-card-${i}" class="pokemon-preview-card">
@@ -30,30 +30,33 @@ function renderPokemonPreviewCard(i) {
                 <img id="pokemon-picture-${i}" class="pokemon-picture">
             </div>
             <div class="pokemon-type-container">
-                <p id="pokemon-type-${i}" class="pokemon-type"></p>
-                <p id="pokemon-type-2-${i}" class="pokemon-type"></p>
+                ${templateCreateTypeField(i)}
             </div>
         </div>
     `;
 }
 
 
-function renderPokemonInfos(i) {
-    document.getElementById(`pokemon-picture-${i}`).src = allPokemon[i]['sprites']['other']['dream_world']['front_default'];
-    document.getElementById(`pokemon-name-${i}`).innerHTML = allPokemon[i]['name'];
-    document.getElementById(`pokemon-type-${i}`).innerHTML = allPokemon[i]['types'][0]['type']['name'];
+function templateCreateTypeField(index) {
+    let text = '';
 
-    if (allPokemon[i]['types'].length == 2) {
-        
-        for (let j = 0; j < allPokemon[i]['types'].length; j++) {
-            document.getElementById(`pokemon-type-2-${i}`).innerHTML = allPokemon[i]['types'][j]['type']['name'];
-        }
+    for (let i = 0; i < allPokemon[index]['types'].length; i++) {
+        text += `<p id="pokemon-type-${index}" class="pokemon-type">
+                    ${allPokemon[index]['types'][i]['type']['name']}
+                </p>`;
     }
 
+    return text;
 }
 
 
-function renderBackgroundPreviewcard(i) {
+function showPokemonInfos(i) {
+    document.getElementById(`pokemon-picture-${i}`).src = allPokemon[i]['sprites']['other']['dream_world']['front_default'];
+    document.getElementById(`pokemon-name-${i}`).innerHTML = allPokemon[i]['name'];
+}
+
+
+function renderBackgroundPreviewcards(i) {
     let PokemonType = allPokemon[i]['types'][0]['type']['name'];
     let pokemonPreviewCard = document.getElementById(`pokemon-preview-card-${i}`);
 
@@ -84,6 +87,5 @@ function renderBackgroundPreviewcard(i) {
     if (PokemonType == 'fairy') {
         pokemonPreviewCard.classList.add('bg-fairy');
     }
-    
 }
 
