@@ -10,9 +10,7 @@ async function loadPokemon() {
         let response = await fetch(pokemon_url);
         current = await response.json();
         allPokemon.push(current);
-
         console.log(allPokemon[i]);
-
         renderPokemonPreviewCards(i);
         renderBackgroundPreviewcards(i);
     }
@@ -107,24 +105,88 @@ function openDialog(i) {
     dialog.classList.remove('d-none');
     dialog.classList.add('d-flex');
     dialog.innerHTML = templateRenderDialogCard(i);
+
+    renderBackgroundDialogCards(i);
+    loadStats(i);
+
 }
+
+
+function renderBackgroundDialogCards(i) {
+    let PokemonType = allPokemon[i]['types'][0]['type']['name'];
+    let pokemonDialogCard = document.getElementById(`dialog-card`);
+
+    if (PokemonType == 'grass') {
+        pokemonDialogCard.classList.add('bg-green');
+    }
+    if (PokemonType == 'fire') {
+        pokemonDialogCard.classList.add('bg-red');
+    }
+    if (PokemonType == 'water') {
+        pokemonDialogCard.classList.add('bg-blue');
+    }
+    if (PokemonType == 'bug') {
+        pokemonDialogCard.classList.add('bg-light-green');
+    }
+    if (PokemonType == 'normal') {
+        pokemonDialogCard.classList.add('bg-light-cyan');
+    }
+    if (PokemonType == 'poison') {
+        pokemonDialogCard.classList.add('bg-dark-green');
+    }
+    if (PokemonType == 'electric') {
+        pokemonDialogCard.classList.add('bg-yellow');
+    }
+    if (PokemonType == 'ground') {
+        pokemonDialogCard.classList.add('bg-brown');
+    }
+    if (PokemonType == 'fairy') {
+        pokemonDialogCard.classList.add('bg-fairy');
+    }
+}
+
 
 function templateRenderDialogCard(i) {
     return /*html*/ `
+        <div class="dialog-card" id="dialog-card">
+            <div class="header">
+                <div class="pokemon-dialog-name-container">
+                    ${templateCreateDialogNameField(i)}
+                </div>
 
-        <div class="dialog-card">
-
-            <div class="pokemon-dialog-img-container">
-                <img id="pokemon-dialog-img${i}">
+                <div class="pokemon-dialog-img-container">
+                    ${templateCreateDialogPictureField(i)}
+                </div>
             </div>
-
-            <div class="pokemon-dialog-name-container">
-                <h1 id="pokemon-dialog-name${i}"></h1>
-            </div>
-
-
+            <div class="pokemon-dialog-stats-container" id="dialog-stats-container${i}"></div>
         </div>
     `;
-
 }
 
+
+function templateCreateDialogPictureField(i) {
+    return `
+        <img id="pokemon-dialog-img${i}" class="pokemon-dialog-img" src="${allPokemon[i]['sprites']['other']['dream_world']['front_default']}">
+    `;
+}
+
+
+function templateCreateDialogNameField(i) {
+    return `
+        <h1 id="pokemon-dialog-name${i}" class="pokemon-dialog-name">
+            ${allPokemon[i]['name']}
+        </h1>
+    `;
+}
+
+function loadStats(i) {
+    let stats = allPokemon[i]['stats'];
+    for (let k = 0; k < stats.length; k++) {
+        document.getElementById(`dialog-stats-container${i}`).innerHTML += `
+            <div class="dialog-stats">
+                <div>${allPokemon[i]['stats'][k]['stat']['name']}</div>
+                <div>${allPokemon[i]['stats'][k]['base_stat']}</div>
+            </div>
+        `;
+    }
+}
