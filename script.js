@@ -14,21 +14,21 @@ async function loadPokemon() {
         console.log(allPokemon[i]);
 
         renderPokemonPreviewCards(i);
-        showPokemonInfos(i);
         renderBackgroundPreviewcards(i);
     }
 }
 
+// === Preview Cards: ===
 
 function renderPokemonPreviewCards(i) {
     document.getElementById('pokemon-container').innerHTML += /*html*/ `
 
-        <div id="pokemon-preview-card-${i}" class="pokemon-preview-card">
+        <div onclick="openDialog(${i})" id="pokemon-preview-card-${i}" class="pokemon-preview-card">
             <div class="pokemon-picture-container">
-                <img id="pokemon-picture-${i}" class="pokemon-picture">
+                ${templateCreatePictureField(i)}
             </div>
             <div class="pokemon-name-container">
-                <h1 id="pokemon-name-${i}" class="pokemon-name"></h1>
+                ${templateCreateNameField(i)}
             </div>
             <div class="pokemon-type-container">
                 ${templateCreateTypeField(i)}
@@ -38,20 +38,30 @@ function renderPokemonPreviewCards(i) {
 }
 
 
-function templateCreateTypeField(index) {
+function templateCreatePictureField(i) {
     let text = '';
-    for (let i = 0; i < allPokemon[index]['types'].length; i++) {
-        text += `<p id="pokemon-type-${index}" class="pokemon-type">
-                    ${allPokemon[index]['types'][i]['type']['name']}
-                </p>`;
-    }
+        text += `<img id="pokemon-picture-${i}" class="pokemon-picture" src="${allPokemon[i]['sprites']['other']['dream_world']['front_default']}">`;
     return text;
 }
 
 
-function showPokemonInfos(i) {
-    document.getElementById(`pokemon-picture-${i}`).src = allPokemon[i]['sprites']['other']['dream_world']['front_default'];
-    document.getElementById(`pokemon-name-${i}`).innerHTML = allPokemon[i]['name'];
+function templateCreateNameField(i) {
+    let text = '';
+        text += `<h1 id="pokemon-name-${i}" class="pokemon-name">
+                    ${allPokemon[i]['name']}
+                </h1>`;
+    return text;  
+}
+
+
+function templateCreateTypeField(i) {
+    let text = '';
+    for (let j = 0; j < allPokemon[i]['types'].length; j++) {
+        text += `<p id="pokemon-type-${i}" class="pokemon-type">
+                    ${allPokemon[i]['types'][j]['type']['name']}
+                </p>`;
+    }
+    return text;
 }
 
 
@@ -86,5 +96,35 @@ function renderBackgroundPreviewcards(i) {
     if (PokemonType == 'fairy') {
         pokemonPreviewCard.classList.add('bg-fairy');
     }
+}
+
+
+// === Dialog ===
+
+function openDialog(i) {
+    let dialog = document.getElementById('dialog-bg');
+    dialog.innerHTML = '';
+    dialog.classList.remove('d-none');
+    dialog.classList.add('d-flex');
+    dialog.innerHTML = templateRenderDialogCard(i);
+}
+
+function templateRenderDialogCard(i) {
+    return /*html*/ `
+
+        <div class="dialog-card">
+
+            <div class="pokemon-dialog-img-container">
+                <img id="pokemon-dialog-img${i}">
+            </div>
+
+            <div class="pokemon-dialog-name-container">
+                <h1 id="pokemon-dialog-name${i}"></h1>
+            </div>
+
+
+        </div>
+    `;
+
 }
 
