@@ -99,6 +99,14 @@ function renderBackgroundPreviewcards(i) {
 
 // === Dialog ===
 
+function closeDialog(i) {
+    let dialog = document.getElementById('dialog-bg');
+    dialog.innerHTML = '';
+    dialog.classList.add('d-none');
+    dialog.classList.remove('d-flex');
+}
+
+
 function openDialog(i) {
     let dialog = document.getElementById('dialog-bg');
     dialog.innerHTML = '';
