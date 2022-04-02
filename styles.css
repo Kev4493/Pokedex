@@ -37,6 +37,7 @@
 
 body {
     font-family: 'Rubik';
+    background-color: rgb(24, 24, 24);
 }
 
 /* Generelles */
@@ -82,7 +83,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    background-color: rgb(24, 24, 24);
+    /* background-color: rgb(24, 24, 24); */
 }
 
 .d-none {
@@ -93,6 +94,58 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 92%;
+    height: 60px;
+    background-color: antiquewhite;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.header > img {
+    height: 50px;
+    object-fit: cover;
+    margin-left: 3rem;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.input-search {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    background-color: antiquewhite;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.input-search > input {
+    border: none;
+    height: 100%;
+    width: 250px;
+    font-size: 1rem;
+    padding-left: 0.5rem;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    outline: none;
+    background-color: antiquewhite;
+    color: black;
 }
 
 /* Preview-Card */

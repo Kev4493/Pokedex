@@ -157,7 +157,7 @@ function renderBackgroundDialogCards(i) {
 function templateRenderDialogCard(i) {
     return /*html*/ `
         <div class="dialog-card" id="dialog-card">
-            <div class="header">
+            <div class="dialog-header">
                 <div class="pokemon-dialog-name-container">
                     ${templateCreateDialogNameField(i)}
                 </div>
@@ -196,5 +196,21 @@ function loadStats(i) {
                 <div>${allPokemon[i]['stats'][k]['base_stat']}</div>
             </div>
         `;
+    }
+}
+
+// Suchfunktion:
+
+function searchPokemon() {
+    let search = document.getElementById('search-field').value;
+    search = search.toLowerCase();                                      // Dadurch wird die Eingabe in Kleinbuchstaben konvertiert!
+    let pokemonContainer = document.getElementById('pokemon-container');
+    pokemonContainer.innerHTML = '';
+    
+    for (let i = 0; i < allPokemon.length; i++) {
+        if (allPokemon[i]['name'].toLowerCase().includes(search)) {
+            renderPokemonPreviewCards(i);
+            renderBackgroundPreviewcards(i);
+        }
     }
 }

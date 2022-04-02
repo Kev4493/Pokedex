@@ -9,6 +9,16 @@
 
     <body onload="loadPokemon()">
 
+        <div class="header">
+            <img src="./img/pokedex.png" alt="">
+            <div class="input-search">
+                <div class="icon-container">
+                    <img src="./icons/search-icon.svg" alt="">
+                </div>
+                <input onkeyup="searchPokemon()" id="search-field" type="text" placeholder="Search Pokemon">
+            </div>
+        </div>
+
         <div id="pokemon-container"></div>
         <div id="dialog-bg" onclick="closeDialog()" class="dialog-bg d-none"></div>
 
