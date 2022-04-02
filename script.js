@@ -190,12 +190,29 @@ function templateCreateDialogNameField(i) {
 function loadStats(i) {
     let stats = allPokemon[i]['stats'];
     for (let k = 0; k < stats.length; k++) {
-        document.getElementById(`dialog-stats-container${i}`).innerHTML += `
+        document.getElementById(`dialog-stats-container${i}`).innerHTML += /*html*/`
+
             <div class="dialog-stats">
                 <div>${allPokemon[i]['stats'][k]['stat']['name']}</div>
-                <div>${allPokemon[i]['stats'][k]['base_stat']}</div>
+                <div class="stats-diagram-container">
+                    <div id="stats-diagram-${k}" class="stats-diagram" style="width:${allPokemon[i]['stats'][k]['base_stat']}%">
+                        <div class="stats">
+                            ${allPokemon[i]['stats'][k]['base_stat']}
+                        </div>
+                    </div>
+                </div>
             </div>
         `;
+        diagramColor(i, k);
+    }
+
+}
+
+function diagramColor(i, k) {
+    if (allPokemon[i]['stats'][k]['base_stat'] > 50) {
+        document.getElementById(`stats-diagram-${k}`).classList.add('bg-color-green');
+    } else {
+        document.getElementById(`stats-diagram-${k}`).classList.add('bg-color-red');
     }
 }
 
@@ -203,10 +220,9 @@ function loadStats(i) {
 
 function searchPokemon() {
     let search = document.getElementById('search-field').value;
-    search = search.toLowerCase();                                      // Dadurch wird die Eingabe in Kleinbuchstaben konvertiert!
+    search = search.toLowerCase();                                              // .toLowerCase() konvertiert die EIngabe in Kleinbuchstaben!
     let pokemonContainer = document.getElementById('pokemon-container');
     pokemonContainer.innerHTML = '';
-    
     for (let i = 0; i < allPokemon.length; i++) {
         if (allPokemon[i]['name'].toLowerCase().includes(search)) {
             renderPokemonPreviewCards(i);
