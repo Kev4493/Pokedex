@@ -37,23 +37,23 @@ function renderPokemonPreviewCards(i) {
 
 
 function templateCreatePictureField(i) {
-    let text = '';
-        text += `<img id="pokemon-picture-${i}" class="pokemon-picture" src="${allPokemon[i]['sprites']['other']['dream_world']['front_default']}">`;
-    return text;
+    return`
+        <img id="pokemon-picture-${i}" class="pokemon-picture" src="${allPokemon[i]['sprites']['other']['dream_world']['front_default']}">
+    `;
 }
 
 
 function templateCreateNameField(i) {
-    let text = '';
-        text += `<h1 id="pokemon-name-${i}" class="pokemon-name">
-                    ${allPokemon[i]['name']}
-                </h1>`;
-    return text;  
+    return`
+        <h1 id="pokemon-name-${i}" class="pokemon-name">
+            ${allPokemon[i]['name']}
+        </h1>
+    `;
 }
 
 
 function templateCreateTypeField(i) {
-    let text = '';
+    let text = ''; // let text nur bei for-schleife?
     for (let j = 0; j < allPokemon[i]['types'].length; j++) {
         text += `<p id="pokemon-type-${i}" class="pokemon-type">
                     ${allPokemon[i]['types'][j]['type']['name']}
@@ -116,7 +116,6 @@ function openDialog(i) {
 
     renderBackgroundDialogCards(i);
     loadStats(i);
-
 }
 
 
@@ -161,7 +160,6 @@ function templateRenderDialogCard(i) {
                 <div class="pokemon-dialog-name-container">
                     ${templateCreateDialogNameField(i)}
                 </div>
-
                 <div class="pokemon-dialog-img-container">
                     ${templateCreateDialogPictureField(i)}
                 </div>
@@ -187,26 +185,31 @@ function templateCreateDialogNameField(i) {
     `;
 }
 
+
 function loadStats(i) {
     let stats = allPokemon[i]['stats'];
     for (let k = 0; k < stats.length; k++) {
-        document.getElementById(`dialog-stats-container${i}`).innerHTML += /*html*/`
-
-            <div class="dialog-stats">
-                <div>${allPokemon[i]['stats'][k]['stat']['name']}</div>
-                <div class="stats-diagram-container">
-                    <div id="stats-diagram-${k}" class="stats-diagram" style="width:${allPokemon[i]['stats'][k]['base_stat']}%">
-                        <div class="stats">
-                            ${allPokemon[i]['stats'][k]['base_stat']}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+        document.getElementById(`dialog-stats-container${i}`).innerHTML += templateCreateDiagram(i, k);
         diagramColor(i, k);
     }
-
 }
+
+
+function templateCreateDiagram(i, k) {
+    return `
+    <div class="dialog-stats">
+        <div>${allPokemon[i]['stats'][k]['stat']['name']}</div>
+        <div class="stats-diagram-container">
+            <div id="stats-diagram-${k}" class="stats-diagram" style="width:${allPokemon[i]['stats'][k]['base_stat']}%">
+                <div class="stats">
+                    ${allPokemon[i]['stats'][k]['base_stat']}
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+}
+
 
 function diagramColor(i, k) {
     if (allPokemon[i]['stats'][k]['base_stat'] > 50) {
@@ -216,6 +219,7 @@ function diagramColor(i, k) {
     }
 }
 
+
 // Suchfunktion:
 
 function searchPokemon() {
@@ -223,6 +227,7 @@ function searchPokemon() {
     search = search.toLowerCase();                                              // .toLowerCase() konvertiert die EIngabe in Kleinbuchstaben!
     let pokemonContainer = document.getElementById('pokemon-container');
     pokemonContainer.innerHTML = '';
+    
     for (let i = 0; i < allPokemon.length; i++) {
         if (allPokemon[i]['name'].toLowerCase().includes(search)) {
             renderPokemonPreviewCards(i);
